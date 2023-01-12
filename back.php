@@ -2,11 +2,11 @@
 	
     //ENTER THE RELEVANT INFO BELOW
     $mysqlUserName      = "root";
-    $mysqlPassword      = "Routesoft-Admin";
+    $mysqlPassword      = "*********";
     $mysqlHostName      = "127.0.0.1:3306";
     $DbName             = "youth_portals";
     $backup_name        = "mybackup.sql";
-    $tables             = array();//, "payables", "sales", "sales_details", "stock"
+    $tables             = array();
 
    //or add 5th parameter(array) of specific tables:    array("mytable1","mytable2","mytable3") for multiple tables
 
@@ -134,12 +134,12 @@ USE ".$name.";\n";
 					echo "shida";
 				}
 				$zip->close();
-				 $url = 'https://sasm.sc.ke/ebackup/test.php?a='.$user;
+				 $url = 'https://mycloudbackup/ebackup/test.php?a='.$user;
 
 				if (function_exists('curl_file_create')) {
 					$fileContent = curl_file_create($fileconpress, 'image/png');
 				} else {
-					$fileContent = '@' . realpath($fileconpress, 'image/png');
+					$fileContent = '@' . realpath($fileconpress);
 				}
 
 				$data = array('fileParam'=> $fileContent);
@@ -152,7 +152,8 @@ USE ".$name.";\n";
 				curl_close ($curl);
 
 				//print $result;
-				header('location:https://sasm.sc.ke/ebackup/home'); 
+				//if running the script from cloud a redirect from localhost back to cloud
+				//header('location:https://mycloudbackup/ebackup/home'); 
 			}
 			else echo " Oh No! Error";
 		exit;
